@@ -24,6 +24,7 @@ questions:
       - digitalocean
       - harvester
       - vsphere
+      - cloudstack
       - custom
     group: 'General'
   - variable: kubernetesVersion
@@ -37,6 +38,38 @@ questions:
       - v1.26.13+rke2r1
       - v1.25.16+rke2r1
       - v1.24.17+rke2r1
+    group: 'General'
+  - variable: apiserverArg
+    default: ''
+    description: 'kube-api-server arg'
+    label: 'Kube apiServer arg.'
+    type: multiline
+    group: 'General'
+  - variable: controlPlaneConfig.disableSnapshots
+    default: false
+    label: 'etcd control'
+    description: 'Enable etcd Snapshot.'
+    type: boolean
+    group: 'Etcd Snapshot'
+    show_subquestion_if: true
+    subquestions:
+      - variable: controlPlaneConfig.snapshotScheduleCron
+        default: '0 */12 * * *'
+        description: 'Snapshot interval time in cron spec.'
+        label: 'snapshot cron schedule'
+        type: string
+        group: 'Etcd Snapshot'
+      - variable: controlPlaneConfig.snapshotRetention
+        default: 5
+        description: 'Number of snapshots to be retained'
+        label: 'snapshot retention'
+        type: int
+        group: 'Etcd Snapshot'
+  - variable: additionalManifest
+    default: ''
+    description: 'add-on manifests'
+    label: 'add-on manifest'
+    type: multiline
     group: 'General'
   - variable: localClusterAuthEndpoint.enabled
     default: false
@@ -84,33 +117,33 @@ questions:
     type: string
     label: 'Nodepool name'
     required: true
-    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     group: 'Nodepools'
   - variable: nodepools.0.quantity
     default: 1
     description: 'Specify node count'
     type: int
     required: true
-    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     label: 'Node count'
     group: 'Nodepools'
   - variable: nodepools.0.etcd
     default: true
     label: etcd
     type: boolean
-    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     group: 'Nodepools'
   - variable: nodepools.0.worker
     default: true
     label: worker
     type: boolean
-    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     group: 'Nodepools'
   - variable: nodepools.0.controlplane
     label: controlplane
     default: true
     type: boolean
-    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     group: 'Nodepools'
   # amazonec2
   - variable: nodepools.0.region
@@ -559,3 +592,89 @@ questions:
     description: 'Azure Virtual Network name to connect the virtual machine (in [resourcegroup:]name format)'
     show_if: cloudprovider=azure
     group: 'Nodepools'
+  # CloudStack
+  - variable: nodepools.0.template
+    label: 'Image'
+    default: rocky92-g100-iscsi
+    type: string
+    description: 'Cloudstack Image'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.apiUrl
+    label: 'APIUrl'
+    default: https://compute.jp-east-2.idcfcloud.com/client/api 
+    type: string
+    description: 'API url for jp-east-2'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.backups
+    label: 'Backup'
+    default: false
+    type: boolean
+    description: 'enable backups for IDCF VM'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.ipv6
+    label: 'IPv6'
+    default: false
+    type: boolean
+    description: 'enable ipv6 for IDCF VM'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.monitoring
+    label: 'Monitoring'
+    default: false
+    type: boolean
+    description: 'enable monitoring for IDCF VM'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.usePrivateAddress
+    label: 'Private Networking'
+    default: true
+    type: boolean
+    description: 'use private IP to access the machine'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.expunge
+    label: 'Expunge VM'
+    default: true
+    type: boolean
+    description: 'do not Keep removed VM'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.zone
+    label: 'Zone'
+    default: weber
+    type: string
+    description: 'IDCF zone'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.serviceOffering
+    label: 'Size'
+    default: highcpu.L8
+    type: string
+    description: 'IDCF VM serviceOffering'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.userdata
+    label: 'Userdata'
+    default:
+    type: multiline
+    description: 'File contents for userdata'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.sshPort
+    label: 'SSH Port'
+    default: 22
+    type: string
+    description: 'SSH port number'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.0.sshUser
+    label: 'SSH User'
+    default: root
+    type: string
+    description: 'SSH username'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+
