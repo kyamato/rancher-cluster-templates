@@ -1,0 +1,123 @@
+# be sure to add all "required" values...
+
+# amazonec2, azure, digitalocean, harvester, vsphere, custom
+cloudprovider: custom
+
+# rancher manager url
+rancher:
+  cattle:
+    url: # required (example: rancher.example.com)
+
+# cluster values
+cluster:
+  # annotations:
+    # key: value
+  # labels:
+    # key: value
+  name: rke2-cluster-custom
+  config:
+    kubernetesVersion: v1.27.12+rke2r1 # https://github.com/rancher/rke2/releases
+    enableNetworkPolicy: true
+    localClusterAuthEndpoint:
+      enabled: false
+    # agentEnvVars:
+      # - key:value
+    # defaultClusterRoleForProjectMembers: ''
+    # defaultPodSecurityAdmissionConfigurationTemplateName: ''
+    # defaultPodSecurityPolicyTemplateName: ''
+    globalConfig:
+      systemDefaultRegistry: docker.io # default registry
+      cni: canal # canal, calico, cilium, multus,canal, multus,calico, multus,cilium
+      docker: false
+      # token: ''
+      # tls-san:
+        # - url
+        # - ip
+      # disable:
+        # - rke2-coredns
+        # - rke2-ingress-nginx
+        # - rke2-metrics-server
+      disable_scheduler: false
+      disable_cloud_controller: false
+      disable_kube_proxy: false
+      etcd_expose_metrics: false
+      profile: '' # cis-1.6, cis-1.23
+      selinux: false
+      secrets_encryption: false
+      write_kubeconfig_mode: 0600
+      use_service_account_credentials: false
+      protect_kernel_defaults: false
+      cloud_provider_name: '' # https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers
+      # cloud_provider_config: '' # cloud provider config secret here (example: secret://fleet-default:cloudprovider)
+      # kube_controller_manager_arg:
+        # - kube controller manager arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager)
+      # kube_scheduler_arg:
+        # - kube scheduler arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler)
+      # kube_apiserver_arg:
+        # - kube apiserver arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver)
+      # kube_proxy_arg: # (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy)
+        # - kube proxy arguments here
+      # kubelet_arg:
+        # - kubelet arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet)
+    # controlPlaneConfig:
+      # same options as globalConfig
+      # only will apply to the control plane nodes
+    # workerConfig:
+      # same options as globalConfig
+      # only will apply to the worker nodes
+    registries:
+      enabled: false
+      # configs:
+        # - name: registry.example.com
+          # authConfigSecretName: registry-creds
+          # caBundle: ''
+          # insecureSkipVerify: false
+          # tlsSecretName: ''
+      # mirrors:
+        # - name: docker.io
+          # endpoints: ['registry.example.com']
+      # rewrite:
+         # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
+    upgradeStrategy:
+      controlPlaneConcurrency: 10%
+      controlPlaneDrainOptions:
+        enabled: false
+        # deleteEmptyDirData: true
+        # disableEviction: false
+        # force: false
+        # gracePeriod: -1
+        # ignoreDaemonSets: true
+        # ignoreErrors: false
+        # skipWaitForDeleteTimeoutSeconds: 0
+        # timeout: 120
+      workerConcurrency: 10%
+      workerDrainOptions:
+        enabled: false
+        # deleteEmptyDirData: true
+        # disableEviction: false
+        # force: false
+        # gracePeriod: -1
+        # ignoreDaemonSets: true
+        # ignoreErrors: false
+        # skipWaitForDeleteTimeoutSeconds: 0
+        # timeout: 120
+
+# addons values
+addons:
+  monitoring:
+    enabled: false
+    # version: 103.0.4+up45.31.1
+    # values:
+      # values here
+
+  longhorn:
+    enabled: false
+    # version: 103.2.2+up1.5.4
+    # values:
+      # values here
+
+  neuvector:
+    enabled: false
+    # version: 103.0.2+up2.7.3
+    # values:
+      # values here
