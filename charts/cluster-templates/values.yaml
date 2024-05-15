@@ -16,7 +16,8 @@ cluster:
   # annotations:
     # key: value
   # labels:
-    # key: value
+    # topology.kubernetes.io/region: jp-east-2
+    # topology.kubernetes.io/zone: jp-east-2
   name: rke2-cluster
   config:
     kubernetesVersion: v1.27.12+rke2r1 # https://github.com/rancher/rke2/releases
