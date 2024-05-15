@@ -5,15 +5,15 @@ kind: CloudstackConfig
 metadata:
   name: {{ $nodepool.name }}
   namespace: fleet-default
-common:
-{{- if $nodepool.labels }}
-  labels:
-{{ toYaml $nodepool.labels | indent 4 }}
-{{- end }}
-{{- if $nodepool.taints }}
-  taints:
-{{ toYaml $nodepool.taints | indent 4 }}
-{{- end }}
+#common:
+#{{- if $nodepool.labels }}
+#  labels:
+#{{ toYaml $nodepool.labels | indent 4 }}
+#{{- end }}
+#{{- if $nodepool.taints }}
+#  taints:
+#{{ toYaml $nodepool.taints | indent 4 }}
+#{{- end }}
 {{- if $nodepool.backups }}
 backups: {{ $nodepool.backups }}
 {{- end }}
