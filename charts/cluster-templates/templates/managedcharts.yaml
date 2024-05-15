@@ -1,7 +1,7 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
-  name: rke2-calico
+  name: rke2-coredns
   namespace: kube-system
 spec:
   valuesContent: |-
@@ -26,18 +26,20 @@ spec:
       whenUnsatisfiable: DoNotSchedule
       labelSelector:
         matchLabels:
-          k8s-app: tigera-operator
+          k8s-app: kube-dns
     - maxSkew: 1
       topologyKey: kubernetes.io/hostname
       whenUnsatisfiable: DoNotSchedule
       labelSelector:
         matchLabels:
-          k8s-app: tigera-operator
+          k8s-app: kube-dns
     tolerations:
-    - effect: NoExecute
-      operator: Exists
-    - effect: NoSchedule
-      operator: Exists
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "node-role.kubernetes.io/etcd"
+      operator: "Exists"
+      effect: "NoExecute"
     - effect: NoExecute
       key: node.kubernetes.io/not-ready
       operator: Exists
@@ -46,82 +48,53 @@ spec:
       key: node.kubernetes.io/unreachable
       operator: Exists
       tolerationSeconds: 30
-    installation:
-      calicoNetwork:
-        nodeAddressAutodetectionV4:
-          kubernetes: NodeInternalIP
-      controlPlaneTolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/control-plane
-          operator: Exists
-        - effect: NoExecute
-          key: node-role.kubernetes.io/etcd
-          operator: Exists
-        - effect: NoExecute
-          key: node.kubernetes.io/not-ready
-          operator: Exists
-          tolerationSeconds: 30
-        - effect: NoExecute
-          key: node.kubernetes.io/unreachable
-          operator: Exists
-          tolerationSeconds: 30
-      calicoKubeControllersDeployment:
-        spec:
-          template:
-            spec:
-              affinity:
-                nodeAffinity:
-                  preferredDuringSchedulingIgnoredDuringExecution:
-                  - preference:
-                      matchExpressions:
-                      - key: topology.kubernetes.io/region
-                        operator: In
-                        values:
-                        - jp-east-2
-                    weight: 100
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: node-role.kubernetes.io/worker
-                        operator: Exists
-      calicoNodeDaemonSet:
-        spec:
-          template:
-            spec:
-              tolerations:
-              - key: CriticalAddonsOnly
+    service:
+      annotations:
+        service.kubernetes.io/topology-aware-hints: auto
+    autoscaler:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: topology.kubernetes.io/region
+                operator: In
+                values:
+                - jp-east-2
+            weight: 100
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/worker
                 operator: Exists
-              - effect: NoSchedule
-                operator: Exists
-              - effect: NoExecute
-                operator: Exists
-              - effect: NoExecute
-                key: node.kubernetes.io/not-ready
-                operator: Exists
-                tolerationSeconds: 30
-              - effect: NoExecute
-                key: node.kubernetes.io/unreachable
-                operator: Exists
-                tolerationSeconds: 30
-      typhaDeployment:
-        spec:
-          template:
-            spec:
-              affinity:
-                nodeAffinity:
-                  preferredDuringSchedulingIgnoredDuringExecution:
-                  - preference:
-                      matchExpressions:
-                      - key: topology.kubernetes.io/region
-                        operator: In
-                        values:
-                        - jp-east-2
-                    weight: 100
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: node-role.kubernetes.io/worker
-                        operator: Exists
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            k8s-app: kube-dns
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            k8s-app: kube-dns
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "node-role.kubernetes.io/etcd"
+        operator: "Exists"
+        effect: "NoExecute"
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 30
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 30
 ---
 {{- if .Values.addons.monitoring }}
 {{- if .Values.addons.monitoring.enabled }}
