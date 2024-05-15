@@ -139,9 +139,9 @@ nodepools:
     etcd: false
     controlplane: false
     worker: true
-    labels:
-      topology.kubernetes.io/region: jp-east-2
-      topology.kubernetes.io/zone: jp-east-2
+    # labels:
+      # topology.kubernetes.io/region: jp-east-2
+      # topology.kubernetes.io/zone: jp-east-2
     # taints:
       # effect: value
       # key: value

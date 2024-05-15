@@ -1,108 +1,208 @@
+# be sure to add all "required" values...
+
+# amazonec2, azure, digitalocean, harvester, vsphere, cloudstack, custom
 cloudprovider: cloudstack
 
-cloudCredentialSecretName: cloudstack
+# cloud provider credentials (example: aws-creds)
+cloudCredentialSecretName: cloudstack-creds
 
-# Specify nodepool options. Can add multiple node groups, specify etcd, controlplane and worker roles.
+# rancher manager url
+rancher:
+  cattle:
+    url: # required (example: rancher.example.com)
+
+# cluster values
+cluster:
+  # annotations:
+    # key: value
+  # labels:
+    # key: value
+  name: rke2-cluster-cloudstack
+  config:
+    kubernetesVersion: v1.27.12+rke2r1 # https://github.com/rancher/rke2/releases
+    enableNetworkPolicy: true
+    localClusterAuthEndpoint:
+      enabled: false
+    # agentEnvVars:
+      # - key:value
+    # defaultClusterRoleForProjectMembers: ''
+    # defaultPodSecurityAdmissionConfigurationTemplateName: ''
+    # defaultPodSecurityPolicyTemplateName: ''
+    globalConfig:
+      systemDefaultRegistry: docker.io # default registry
+      cni: canal # canal, calico, cilium, multus,canal, multus,calico, multus,cilium
+      docker: false
+      # token: ''
+      # tls-san:
+        # - url
+        # - ip
+      # disable:
+        # - rke2-coredns
+        # - rke2-ingress-nginx
+        # - rke2-metrics-server
+      disable_scheduler: false
+      disable_cloud_controller: false
+      disable_kube_proxy: false
+      etcd_expose_metrics: false
+      profile: '' # cis-1.6, cis-1.23
+      selinux: false
+      secrets_encryption: false
+      write_kubeconfig_mode: 0600
+      use_service_account_credentials: false
+      protect_kernel_defaults: false
+      cloud_provider_name: '' # https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-clusters-in-rancher-setup/set-up-cloud-providers
+      # cloud_provider_config: '' # cloud provider config secret here (example: secret://fleet-default:cloudprovider)
+      # kube_controller_manager_arg:
+        # - kube controller manager arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager)
+      # kube_scheduler_arg:
+        # - kube scheduler arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler)
+      # kube_apiserver_arg:
+        # - kube apiserver arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver)
+      # kube_proxy_arg: # (https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy)
+        # - kube proxy arguments here
+      # kubelet_arg:
+        # - kubelet arguments here (https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet)
+    # controlPlaneConfig:
+      # same options as globalConfig
+      # only will apply to the control plane nodes
+    # workerConfig:
+      # same options as globalConfig
+      # only will apply to the worker nodes
+    registries:
+      enabled: false
+      # configs:
+        # - name: registry.example.com
+          # authConfigSecretName: registry-creds
+          # caBundle: ''
+          # insecureSkipVerify: false
+          # tlsSecretName: ''
+      # mirrors:
+        # - name: docker.io
+          # endpoints: ['registry.example.com']
+      # rewrite:
+         # "^rancher/(.*)": "mirrorproject/rancher-images/$1"
+    upgradeStrategy:
+      controlPlaneConcurrency: 10%
+      controlPlaneDrainOptions:
+        enabled: false
+        # deleteEmptyDirData: true
+        # disableEviction: false
+        # force: false
+        # gracePeriod: -1
+        # ignoreDaemonSets: true
+        # ignoreErrors: false
+        # skipWaitForDeleteTimeoutSeconds: 0
+        # timeout: 120
+      workerConcurrency: 10%
+      workerDrainOptions:
+        enabled: false
+        # deleteEmptyDirData: true
+        # disableEviction: false
+        # force: false
+        # gracePeriod: -1
+        # ignoreDaemonSets: true
+        # ignoreErrors: false
+        # skipWaitForDeleteTimeoutSeconds: 0
+        # timeout: 120
+
+# node and nodepool(s) values
 nodepools:
-- etcd: true
-  controlplane: true
-  worker: true
+  - name: control-plane-nodes
+    # displayName: cp-nodes
+    quantity: 3
+    etcd: true
+    controlplane: true
+    worker: false
+    # labels:
+      # key: value
+    # taints:
+      # effect: value
+      # key: value
+      # value: value
+    paused: false
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
+    # accessToken: '' # only needed if not using cloudCredentialSecretName
+    backups: false
+    image: # required (example: rockylinux-9-x64)
+    ipv6: false
+    monitoring: false
+    privateNetworking: false
+    region: # required (example: nyc3)
+    size: # required (example: s-4vcpu-8gb)
+    # sshKeyContents: ''
+    # sshKeyFingerprint: ''
+    # sshPort: 22
+    sshUser: # required (example: rocky)
+    # tags: ''
+    # userData: |
+      #cloud-config
 
-  # specify node labels
-  labels: {}
+  - name: worker-nodes
+    # displayName: wk-nodes
+    quantity: 3
+    etcd: false
+    controlplane: false
+    worker: true
+    # labels:
+      # key: value
+    # taints:
+      # effect: value
+      # key: value
+      # value: value
+    paused: false
+    # drainBeforeDelete: true
+    # drainBeforeDeleteTimeout: 30s
+    # unhealthyNodeTimeout: 60s
+    # machineDeploymentLabels:
+      # key: value
+    # machineDeploymentAnnotations:
+      # key: value
+    # rollingUpdate:
+      # maxUnavailable: 1
+      # maxSurge: 1
+    # accessToken: '' # only needed if not using cloudCredentialSecretName
+    apiUrl: https://compute.jp-east-2.idcfcloud.com/client/api
+    backups: false
+    template: "rocky92-g100-iscsi"
+    ipv6: false
+    monitoring: false
+    privateNetworking: true
+    expunge: true
+    region: "weber"
+    size: "highcpu.L8"
+    # sshKeyContents: ''
+    # sshKeyFingerprint: ''
+    # sshPort: 22
+    sshUser: "root"
+    # tags: ''
+    # userData: |
+      #cloud-config
 
-  # specify node taints
-  taints: {}
+# addons values
+addons:
+  monitoring:
+    enabled: false
+    # version: 103.0.4+up45.31.1
+    # values:
+      # values here
 
-  # specify nodepool size
-  quantity: 1
+  longhorn:
+    enabled: false
+    # version: 103.2.2+up1.5.4
+    # values:
+      # values here
 
-  # Pause node pool
-  # paused: false
-
-  # specify displayName
-  # displayName: ""
-
-  # specify rolling update mechanism
-  # rollingUpdate:
-  #   The maximum number of machines that can be unavailable during the update.
-  #   Value can be an absolute number (ex: 5) or a percentage of desired
-  #   machines (ex: 10%).
-  #   Absolute number is calculated from percentage by rounding down.
-  #   This can not be 0 if MaxSurge is 0.
-  #   Defaults to 0.
-  #   Example: when this is set to 30%, the old MachineSet can be scaled
-  #   down to 70% of desired machines immediately when the rolling update
-  #   starts. Once new machines are ready, old MachineSet can be scaled
-  #   down further, followed by scaling up the new MachineSet, ensuring
-  #   that the total number of machines available at all times
-  #   during the update is at least 70% of desired machines.
-  #   maxUnavailable: "5"
-  #   The maximum number of machines that can be scheduled above the
-  #   desired number of machines.
-  #   Value can be an absolute number (ex: 5) or a percentage of
-  #   desired machines (ex: 10%).
-  #   This can not be 0 if MaxUnavailable is 0.
-  #   Absolute number is calculated from percentage by rounding up.
-  #   Defaults to 1.
-  #   Example: when this is set to 30%, the new MachineSet can be scaled
-  #   up immediately when the rolling update starts, such that the total
-  #   number of old and new machines do not exceed 130% of desired
-  #   machines. Once old machines have been killed, new MachineSet can
-  #   be scaled up further, ensuring that total number of machines running
-  #   at any time during the update is at most 130% of desired machines.
-  #   maxSurge: "1"
-
-  # specify machineDeployment Labels
-  machineDeploymentLabels: "topology.kubernetes.io/region=jp-east-2"
-
-  # specify machineDeployment annotations
-  # machineDeploymentAnnotations: {}
-
-  # specify nodepool name
-  name: cloudstack-nodepool-1
-
-  # enable backups for droplet
-  # backups: true
-
-  # Cloudstack Image
-  template: rocky92-g100-iscsi
-
-  # enable ipv6 for droplet
-  ipv6: false
-
-  # enable monitoring for droplet
-  monitoring: false
-
-  # Use a private IP to access the machine
-  usePrivateAddress: true
-
-  # expunge used VM
-  expunge: true
-
-  # Cloudstack zone
-  zone: weber
-
-  # Cloudstack serviceOffering
-  serviceOffering: highcpu.L8
-
-  # IDCF Cloud API URL
-  apiUrl: https://compute.jp-east-2.idcfcloud.com/client/api
-
-  # File contents for sshKeyContents
-  # sshKeyContents: ""
-
-  # SSH key fingerprint
-  # sshKeyFingerprint: ""
-
-  # SSH port
-  sshPort: 22
-
-  # SSH username
-  sshUser: root
-
-  # comma-separated list of tags to apply to the vm
-  # tags: ""
-
-  # File contents for userdata
-  # userdata: ""
+  neuvector:
+    enabled: false
+    # version: 103.0.2+up2.7.3
+    # values:
+      # values here
