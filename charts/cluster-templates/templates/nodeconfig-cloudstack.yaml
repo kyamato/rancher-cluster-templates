@@ -36,7 +36,9 @@ sshUser: {{ $nodepool.sshUser }}
 {{- if $nodepool.tags }}
 tags: {{ $nodepool.tags }}
 {{- end }}
+{{- if $nodepool.userdata }}
 userdata: {{ $nodepool.userdata }}
+{{- end }}
 ---
 {{- end }}
 {{ $nodepool := .Values.nodepool }}
