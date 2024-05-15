@@ -38,7 +38,7 @@ cluster:
         # - ip
       disable:
         # - rke2-coredns
-        - rke2-ingress-nginx
+        # - rke2-ingress-nginx
         # - rke2-metrics-server
       disable_scheduler: false
       disable_cloud_controller: false
