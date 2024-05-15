@@ -14,7 +14,9 @@ common:
   taints:
 {{ toYaml $nodepool.taints | indent 4 }}
 {{- end }}
+{{- if $nodepool.backups }}
 backups: {{ $nodepool.backups }}
+{{- end }}
 template: {{ $nodepool.template }}
 #ipv6: {{ $nodepool.ipv6 }}
 monitoring: {{ $nodepool.monitoring }}
@@ -47,7 +49,9 @@ common:
   taints:
 {{ toYaml $nodepool.taints | indent 4 }}
 {{- end }}
+{{- if $nodepool.backups }}
 backups: {{ $nodepool.backups }}
+{{- end }}
 template: {{ $nodepool.template }}
 #ipv6: {{ $nodepool.ipv6 }}
 monitoring: {{ $nodepool.monitoring }}
