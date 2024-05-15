@@ -19,7 +19,9 @@ backups: {{ $nodepool.backups }}
 {{- end }}
 template: {{ $nodepool.template }}
 #ipv6: {{ $nodepool.ipv6 }}
+{{- if $nodepool.monitoring }}
 monitoring: {{ $nodepool.monitoring }}
+{{- end }}
 usePrivateAddress: {{ $nodepool.usePrivateAddress }}
 expunge: {{ $nodepool.expunge }}
 apiUrl: {{ $nodepool.apiUrl }}
@@ -27,9 +29,13 @@ zone: {{ $nodepool.zone }}
 serviceOffering: {{ $nodepool.serviceOffering }}
 #sshKeyContents: {{ $nodepool.sshKeyContents }}
 #sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
+{{- if $nodepool.sshPort }}
 sshPort: {{ $nodepool.sshPort | quote }}
+{{- end }}
 sshUser: {{ $nodepool.sshUser }}
+{{- if $nodepool.tags }}
 tags: {{ $nodepool.tags }}
+{{- end }}
 userdata: {{ $nodepool.userdata }}
 ---
 {{- end }}
@@ -54,7 +60,9 @@ backups: {{ $nodepool.backups }}
 {{- end }}
 template: {{ $nodepool.template }}
 #ipv6: {{ $nodepool.ipv6 }}
+{{- if $nodepool.monitoring }}
 monitoring: {{ $nodepool.monitoring }}
+{{- end }}
 usePrivateAddress: {{ $nodepool.usePrivateAddress }}
 expunge: {{ $nodepool.expunge }}
 apiUrl: {{ $nodepool.apiUrl }}
@@ -62,9 +70,13 @@ zone: {{ $nodepool.zone }}
 serviceOffering: {{ $nodepool.serviceOffering }}
 #sshKeyContents: {{ $nodepool.sshKeyContents }}
 #sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
+{{- if $nodepool.sshPort }}
 sshPort: {{ $nodepool.sshPort | quote }}
+{{- end }}
 sshUser: {{ $nodepool.sshUser }}
 #tags: {{ $nodepool.tags }}
+{{- if $nodepool.userdata }}
 userdata: {{ $nodepool.userdata }}
+{{- end }}
 {{- end }}
 {{- end }}
