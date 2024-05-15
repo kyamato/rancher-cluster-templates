@@ -1,7 +1,6 @@
 apiVersion: v2
 name: rancher-cluster-templates
 description: YAMATO Hardened Rancher Cluster Templates by Rancher Government Solutions
-icon: https://github.com/kyamato/rancher-cluster-templates/charts/cluster-templates/carbide-logo.svg
 type: application
 version: 0.6.0
 appVersion: 0.6.0
