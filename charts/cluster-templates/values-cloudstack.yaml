@@ -4,7 +4,7 @@
 cloudprovider: cloudstack
 
 # cloud provider credentials (example: aws-creds)
-cloudCredentialSecretName: cloudstack-creds
+cloudCredentialSecretName: 
 
 # rancher manager url
 rancher:
@@ -140,7 +140,7 @@ nodepools:
     size: # required (example: s-4vcpu-8gb)
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
-    sshPort: 22
+    # sshPort: 22
     sshUser: # required (example: rocky)
     # tags: ''
     # userData: |
@@ -181,7 +181,7 @@ nodepools:
     size: "highcpu.L8"
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
-    sshPort: 22
+    # sshPort: 22
     sshUser: "root"
     # tags: ''
     # userData: |

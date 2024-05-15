@@ -9,7 +9,7 @@ cloudCredentialSecretName:
 # rancher manager url
 rancher:
   cattle:
-    url: rke21.y.k8s.bdg.egg.jp # required (example: rancher.example.com)
+    url: # required (example: rancher.example.com)
 
 # cluster values
 cluster:
