@@ -30,7 +30,7 @@ serviceOffering: {{ $nodepool.serviceOffering }}
 #sshKeyContents: {{ $nodepool.sshKeyContents }}
 #sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
 {{- if $nodepool.sshPort }}
-sshPort: {{ $nodepool.sshPort | quote }}
+sshPort: {{ $nodepool.sshPort | squote }}
 {{- end }}
 sshUser: {{ $nodepool.sshUser }}
 {{- if $nodepool.tags }}
@@ -73,7 +73,7 @@ serviceOffering: {{ $nodepool.serviceOffering }}
 #sshKeyContents: {{ $nodepool.sshKeyContents }}
 #sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
 {{- if $nodepool.sshPort }}
-sshPort: {{ $nodepool.sshPort | quote }}
+sshPort: {{ $nodepool.sshPort | squote }}
 {{- end }}
 sshUser: {{ $nodepool.sshUser }}
 #tags: {{ $nodepool.tags }}
