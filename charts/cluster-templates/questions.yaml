@@ -678,6 +678,41 @@ questions:
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
 
+  - variable: nodepools.1.name
+    default:
+    description: 'Specify nodepool name'
+    type: string
+    label: 'Nodepool name'
+    required: true
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.quantity
+    default: 1
+    description: 'Specify node count'
+    type: int
+    required: true
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    label: 'Node count'
+    group: 'Nodepools'
+  - variable: nodepools.1.etcd
+    default: true
+    label: etcd
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.worker
+    default: true
+    label: worker
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.controlplane
+    label: controlplane
+    default: true
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+
   - variable: nodepools.1.template
     label: 'Image'
     default: rocky92-g100-iscsi
