@@ -109,7 +109,7 @@ cluster:
 nodepools:
   - name: control-plane-nodes
     # displayName: cp-nodes
-    quantity: 3
+    quantity: 1
     etcd: true
     controlplane: true
     worker: false
@@ -139,6 +139,7 @@ nodepools:
     privateNetworking: false
     region: # required (example: nyc3)
     serviceOffering: # required (example: s-4vcpu-8gb)
+    zone: # required (example: weber)
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     sshPort: "22"
@@ -183,6 +184,7 @@ nodepools:
     monitoring: false
     privateNetworking: true
     region: "weber"
+    zone:
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     # tags: ''
