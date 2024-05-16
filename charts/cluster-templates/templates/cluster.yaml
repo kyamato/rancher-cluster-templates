@@ -180,6 +180,8 @@ spec:
         kind: HarvesterConfig
         {{- else if eq $.Values.cloudprovider "digitalocean" }}
         kind: DigitaloceanConfig
+        {{- else if eq $.Values.cloudprovider "cloudstack" }}
+        kind: CloudstackConfig
         {{- else if eq $.Values.cloudprovider "azure" }}
         kind: AzureConfig
         {{- end}}
@@ -226,6 +228,8 @@ spec:
         kind: HarvesterConfig
         {{- else if eq $.Values.cloudprovider "digitalocean" }}
         kind: DigitaloceanConfig
+        {{- else if eq $.Values.cloudprovider "cloudstack" }}
+        kind: CloudstackConfig
         {{- else if eq $.Values.cloudprovider "azure" }}
         kind: AzureConfig
         {{- end}}
