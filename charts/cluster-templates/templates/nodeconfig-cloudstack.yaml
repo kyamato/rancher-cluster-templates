@@ -42,7 +42,7 @@ userdata: {{ $nodepool.userdata }}
 ---
 {{- end }}
 {{ $nodepool := .Values.nodepool }}
-{{- if $nodepool }}
+#{{- if $nodepool }}
 apiVersion: rke-machine-config.cattle.io/v1
 kind: CloudstackConfig
 metadata:
@@ -82,4 +82,4 @@ sshUser: {{ $nodepool.sshUser }}
 userdata: {{ $nodepool.userdata }}
 {{- end }}
 {{- end }}
-{{- end }}
+#{{- end }}
