@@ -107,7 +107,7 @@ cluster:
 
 # node and nodepool(s) values
 nodepools:
-  - name: control-plane-nodes-fix
+  - name: control-plane-nodes
     # displayName: cp-nodes
     quantity: 1
     etcd: true
@@ -135,9 +135,8 @@ nodepools:
     backups: false
     template: "rocky92-g100-iscsi"
     ipv6: false
-    monitoring: true
-    privateNetworking: false
-    region: # required (example: nyc3)
+    monitoring: false
+    privateNetworking: true
     serviceOffering: # required (example: s-4vcpu-8gb)
     zone: # required (example: weber)
     # sshKeyContents: ''
@@ -156,7 +155,7 @@ nodepools:
     controlplane: false
     worker: true
     expunge: true
-    serviceOffering: highcpu.L8
+    serviceOffering:
     # labels:
       # key: value
     # taints:
@@ -166,8 +165,7 @@ nodepools:
     paused: false
     # sshPort: 22
     sshUser: "root"
-    template: "rocky92-g100-iscsi"
-#    image: "rocky92-g100-iscsi"
+    template:
     # drainBeforeDelete: true
     # drainBeforeDeleteTimeout: 30s
     # unhealthyNodeTimeout: 60s
@@ -183,9 +181,7 @@ nodepools:
     ipv6: false
     monitoring: false
     privateNetworking: true
-    region: "weber"
     zone:
-    serviceOffering: highcpu.L8
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     # tags: ''
