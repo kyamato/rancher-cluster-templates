@@ -146,6 +146,8 @@ nodepools:
     # tags: ''
     # userData: |
       #cloud-config
+    template: "rocky92-g100-iscsi"
+    serviceOffering: "highcpu.L8"
 
   - name: worker-nodes
     # displayName: wk-nodes
