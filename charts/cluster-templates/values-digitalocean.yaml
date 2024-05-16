@@ -109,7 +109,7 @@ cluster:
 nodepools:
   - name: control-plane-nodes
     # displayName: cp-nodes
-    quantity: 3
+    quantity: 1
     etcd: true
     controlplane: true
     worker: false
@@ -148,7 +148,7 @@ nodepools:
 
   - name: worker-nodes
     # displayName: wk-nodes
-    quantity: 3
+    quantity: 2
     etcd: false
     controlplane: false
     worker: true
