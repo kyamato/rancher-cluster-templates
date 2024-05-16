@@ -133,7 +133,7 @@ nodepools:
     # accessToken: '' # only needed if not using cloudCredentialSecretName
     apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
     backups: false
-    template: # required (example: rockylinux-9-x64)
+    template: "rocky92-g100-iscsi"
     ipv6: false
     monitoring: true
     privateNetworking: false
@@ -185,6 +185,7 @@ nodepools:
     privateNetworking: true
     region: "weber"
     zone:
+    serviceOffering: highcpu.L8
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     # tags: ''
