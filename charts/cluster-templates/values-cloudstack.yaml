@@ -146,15 +146,16 @@ nodepools:
     # tags: ''
     # userData: |
       #cloud-config
-    template: "rocky92-g100-iscsi"
-    serviceOffering: "highcpu.L8"
 
   - name: worker-nodes
     # displayName: wk-nodes
+    apiUrl: https://compute.jp-east-2.idcfcloud.com/client/api
     quantity: 3
     etcd: false
     controlplane: false
     worker: true
+    expunge: true
+    size:
     # labels:
       # key: value
     # taints:
@@ -162,6 +163,10 @@ nodepools:
       # key: value
       # value: value
     paused: false
+    sshPort: 22
+    sshUser: "root"
+#    template: "rocky92-g100-iscsi"
+    image: "rocky92-g100-iscsi"
     # drainBeforeDelete: true
     # drainBeforeDeleteTimeout: 30s
     # unhealthyNodeTimeout: 60s
@@ -173,19 +178,13 @@ nodepools:
       # maxUnavailable: 1
       # maxSurge: 1
     # accessToken: '' # only needed if not using cloudCredentialSecretName
-    apiUrl: https://compute.jp-east-2.idcfcloud.com/client/api
     backups: false
-    template: "rocky92-g100-iscsi"
     ipv6: false
     monitoring: false
     privateNetworking: true
-    expunge: true
     region: "weber"
-    size: "highcpu.L8"
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
-    sshPort: 22
-    sshUser: "root"
     # tags: ''
     # userData: |
       #cloud-config
