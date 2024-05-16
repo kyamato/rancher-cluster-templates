@@ -602,7 +602,7 @@ questions:
     group: 'Nodepools'
   - variable: nodepools.0.apiUrl
     label: 'APIUrl'
-    default: https://compute.jp-east-2.idcfcloud.com/client/api 
+    default: 'https://compute.jp-east-2.idcfcloud.com/client/api'
     type: string
     description: 'API url for jp-east-2'
     show_if: cloudprovider=cloudstack
