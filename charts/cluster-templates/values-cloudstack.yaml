@@ -105,9 +105,97 @@ cluster:
         # skipWaitForDeleteTimeoutSeconds: 0
         # timeout: 120
 
+## node and nodepool(s) values
+#nodepools:
+#  - name: control-plane-nodes-fix
+#    # displayName: cp-nodes
+#    quantity: 1
+#    etcd: true
+#    controlplane: true
+#    worker: false
+#    # labels:
+#      # key: value
+#    # taints:
+#      # effect: value
+#      # key: value
+#      # value: value
+#    paused: false
+#    # drainBeforeDelete: true
+#    # drainBeforeDeleteTimeout: 30s
+#    # unhealthyNodeTimeout: 60s
+#    # machineDeploymentLabels:
+#      # key: value
+#    # machineDeploymentAnnotations:
+#      # key: value
+#    # rollingUpdate:
+#      # maxUnavailable: 1
+#      # maxSurge: 1
+#    # accessToken: '' # only needed if not using cloudCredentialSecretName
+#    apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
+#    backups: false
+#    template: "rocky92-g100-iscsi"
+#    ipv6: false
+#    monitoring: true
+#    privateNetworking: false
+#    region: # required (example: nyc3)
+#    serviceOffering: # required (example: s-4vcpu-8gb)
+#    zone: # required (example: weber)
+#    # sshKeyContents: ''
+#    # sshKeyFingerprint: ''
+#    # sshPort: 22
+#    sshUser: # required (example: rocky)
+#    # tags: ''
+#    # userData: |
+#      #cloud-config
+#
+#  - name: worker-nodes
+#    # displayName: wk-nodes
+#    apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
+#    quantity: 3
+#    etcd: false
+#    controlplane: false
+#    worker: true
+#    expunge: true
+#    serviceOffering: highcpu.L8
+#    # labels:
+#      # key: value
+#    # taints:
+#      # effect: value
+#      # key: value
+#      # value: value
+#    paused: false
+#    # sshPort: 22
+#    sshUser: "root"
+#    template: "rocky92-g100-iscsi"
+##    image: "rocky92-g100-iscsi"
+#    # drainBeforeDelete: true
+#    # drainBeforeDeleteTimeout: 30s
+#    # unhealthyNodeTimeout: 60s
+#    # machineDeploymentLabels:
+#      # key: value
+#    # machineDeploymentAnnotations:
+#      # key: value
+#    # rollingUpdate:
+#      # maxUnavailable: 1
+#      # maxSurge: 1
+#    # accessToken: '' # only needed if not using cloudCredentialSecretName
+#    backups: false
+#    ipv6: false
+#    monitoring: false
+#    privateNetworking: true
+#    region: "weber"
+#    zone:
+#    serviceOffering: highcpu.L8
+#    # sshKeyContents: ''
+#    # sshKeyFingerprint: ''
+#    # tags: ''
+#    # userData: |
+#      #cloud-config
+#
+
 # node and nodepool(s) values
 nodepools:
-  - name: control-plane-nodes-fix
+  - name: control-plane-nodes
     # displayName: cp-nodes
     quantity: 1
     etcd: true
@@ -131,15 +219,13 @@ nodepools:
       # maxUnavailable: 1
       # maxSurge: 1
     # accessToken: '' # only needed if not using cloudCredentialSecretName
-    apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
     backups: false
-    template: "rocky92-g100-iscsi"
+    image: # required (example: rockylinux-9-x64)
     ipv6: false
-    monitoring: true
-    privateNetworking: false
+    monitoring: false
+    privateNetworking: true
     region: # required (example: nyc3)
-    serviceOffering: # required (example: s-4vcpu-8gb)
-    zone: # required (example: weber)
+    size: # required (example: s-4vcpu-8gb)
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     # sshPort: 22
@@ -150,13 +236,10 @@ nodepools:
 
   - name: worker-nodes
     # displayName: wk-nodes
-    apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
-    quantity: 3
+    quantity: 2
     etcd: false
     controlplane: false
     worker: true
-    expunge: true
-    serviceOffering: highcpu.L8
     # labels:
       # key: value
     # taints:
@@ -164,10 +247,6 @@ nodepools:
       # key: value
       # value: value
     paused: false
-    # sshPort: 22
-    sshUser: "root"
-    template: "rocky92-g100-iscsi"
-#    image: "rocky92-g100-iscsi"
     # drainBeforeDelete: true
     # drainBeforeDeleteTimeout: 30s
     # unhealthyNodeTimeout: 60s
@@ -180,14 +259,16 @@ nodepools:
       # maxSurge: 1
     # accessToken: '' # only needed if not using cloudCredentialSecretName
     backups: false
+    image: # required (example: rockylinux-9-x64)
     ipv6: false
     monitoring: false
     privateNetworking: true
-    region: "weber"
-    zone:
-    serviceOffering: highcpu.L8
+    region: # required (example: nyc3)
+    size: # required (example: s-4vcpu-8gb)
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
+    # sshPort: 22
+    sshUser: # required (example: rocky)
     # tags: ''
     # userData: |
       #cloud-config
