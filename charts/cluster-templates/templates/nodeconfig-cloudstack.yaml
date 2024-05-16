@@ -46,7 +46,8 @@ userdata: {{ $nodepool.userdata }}
 apiVersion: rke-machine-config.cattle.io/v1
 kind: CloudstackConfig
 metadata:
-  name: {{ $nodepool.name }}
+#  name: {{ $nodepool.name }}
+  name: test-pool
   namespace: fleet-default
 common:
 {{- if $nodepool.labels }}
