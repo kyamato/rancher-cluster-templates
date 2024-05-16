@@ -135,7 +135,7 @@ nodepools:
 
   - name: worker-nodes
     # displayName: wk-nodes
-    quantity: 3
+    quantity: 1
     etcd: false
     controlplane: false
     worker: true

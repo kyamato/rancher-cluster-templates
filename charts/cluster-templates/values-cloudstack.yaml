@@ -150,7 +150,7 @@ nodepools:
   - name: worker-nodes
     # displayName: wk-nodes
     apiUrl: 'https://compute.jp-east-2.idcfcloud.com/client/api'
-    quantity: 3
+    quantity: 1
     etcd: false
     controlplane: false
     worker: true
