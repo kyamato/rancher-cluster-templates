@@ -155,7 +155,7 @@ nodepools:
     controlplane: false
     worker: true
     expunge: true
-    serviceOffering:
+    serviceOffering: highcpu.L8
     # labels:
       # key: value
     # taints:
@@ -163,9 +163,9 @@ nodepools:
       # key: value
       # value: value
     paused: false
-    # sshPort: 22
+    sshPort: 22
     sshUser: "root"
-    template:
+    template: rocky92-g100-iscsi
     # drainBeforeDelete: true
     # drainBeforeDeleteTimeout: 30s
     # unhealthyNodeTimeout: 60s
@@ -181,7 +181,7 @@ nodepools:
     ipv6: false
     monitoring: false
     privateNetworking: true
-    zone:
+    zone: weber
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
     # tags: ''
