@@ -594,13 +594,13 @@ questions:
     group: 'Nodepools'
 
   # CloudStack
-  - variable: nodepools.0.template
-    label: 'Image'
-    default: rocky92-g100-iscsi
-    type: string
-    description: 'Cloudstack Image'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.0.template
+#    label: 'Image'
+#    default: rocky92-g100-iscsi
+#    type: string
+#    description: 'Cloudstack Image'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
   - variable: nodepools.0.apiUrl
     label: 'APIUrl'
     default: 'https://compute.jp-east-2.idcfcloud.com/client/api'
@@ -713,13 +713,13 @@ questions:
     show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
     group: 'Nodepools'
 
-  - variable: nodepools.1.template
-    label: 'Image'
-    default: rocky92-g100-iscsi
-    type: string
-    description: 'Cloudstack Image'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.1.template
+#    label: 'Image'
+#    default: rocky92-g100-iscsi
+#    type: string
+#    description: 'Cloudstack Image'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
   - variable: nodepools.1.apiUrl
     label: 'APIUrl'
     default: 'https://compute.jp-east-2.idcfcloud.com/client/api'
