@@ -679,130 +679,122 @@ questions:
 #    show_if: cloudprovider=cloudstack
 #    group: 'Nodepools'
 
-  - valiable: nodepools.0.addpool
-    label: 'additional pool'
-    type: bool
-    description: 'additional pool'
+    default:
+    description: 'Specify nodepool name'
+    type: string
+    label: 'Nodepool name'
+    required: true
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.quantity
+    default: 1
+    description: 'Specify node count'
+    type: int
+    required: true
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    label: 'Node count'
+    group: 'Nodepools'
+  - variable: nodepools.1.etcd
+    default: true
+    label: etcd
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.worker
+    default: true
+    label: worker
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.controlplane
+    label: controlplane
+    default: true
+    type: boolean
+    show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
+    group: 'Nodepools'
+
+  - variable: nodepools.1.template
+    label: 'Image'
+    default: rocky92-g100-iscsi
+    type: string
+    description: 'Cloudstack Image'
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
-    subquestions:
-      - variable: nodepools.1.name
-        default:
-        description: 'Specify nodepool name'
-        type: string
-        label: 'Nodepool name'
-        required: true
-        show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
-        group: 'Nodepools'
-      - variable: nodepools.1.quantity
-        default: 1
-        description: 'Specify node count'
-        type: int
-        required: true
-        show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
-        label: 'Node count'
-        group: 'Nodepools'
-      - variable: nodepools.1.etcd
-        default: true
-        label: etcd
-        type: boolean
-        show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
-        group: 'Nodepools'
-      - variable: nodepools.1.worker
-        default: true
-        label: worker
-        type: boolean
-        show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
-        group: 'Nodepools'
-      - variable: nodepools.1.controlplane
-        label: controlplane
-        default: true
-        type: boolean
-        show_if: cloudprovider=amazonec2 || cloudprovider=vsphere || cloudprovider=azure || cloudprovider=digitalocean || cloudprovider=harvester || cloudprovider=cloudstack
-        group: 'Nodepools'
-    
-      - variable: nodepools.1.template
-        label: 'Image'
-        default: rocky92-g100-iscsi
-        type: string
-        description: 'Cloudstack Image'
-        show_if: cloudprovider=cloudstack
-        group: 'Nodepools'
-      - variable: nodepools.1.apiUrl
-        label: 'APIUrl'
-        default: 'https://compute.jp-east-2.idcfcloud.com/client/api'
-        type: string
-        description: 'API url for jp-east-2'
-        show_if: cloudprovider=cloudstack
-        group: 'Nodepools'
-    #  - variable: nodepools.1.backups
-    #    label: 'Backup'
-    #    default: false
-    #    type: boolean
-    #    description: 'enable backups for IDCF VM'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.ipv6
-    #    label: 'IPv6'
-    #    default: false
-    #    type: boolean
-    #    description: 'enable ipv6 for IDCF VM'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.monitoring
-    #    label: 'Monitoring'
-    #    default: false
-    #    type: boolean
-    #    description: 'enable monitoring for IDCF VM'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.usePrivateAddress
-    #    label: 'Private Networking'
-    #    default: true
-    #    type: boolean
-    #    description: 'use private IP to access the machine'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.expunge
-    #    label: 'Expunge VM'
-    #    default: true
-    #    type: boolean
-    #    description: 'do not Keep removed VM'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-      - variable: nodepools.1.zone
-        label: 'Zone'
-        default: weber
-        type: string
-        description: 'IDCF zone'
-        show_if: cloudprovider=cloudstack
-        group: 'Nodepools'
-      - variable: nodepools.1.serviceOffering
-        label: 'Size'
-        default: highcpu.L8
-        type: string
-        description: 'IDCF VM serviceOffering'
-        show_if: cloudprovider=cloudstack
-        group: 'Nodepools'
-    #  - variable: nodepools.1.userdata
-    #    label: 'Userdata'
-    #    default:
-    #    type: multiline
-    #    description: 'File contents for userdata'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.sshPort
-    #    label: 'SSH Port'
-    #    default: 22
-    #    type: string
-    #    description: 'SSH port number'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
-    #  - variable: nodepools.1.sshUser
-    #    label: 'SSH User'
-    #    default: root
-    #    type: string
-    #    description: 'SSH username'
-    #    show_if: cloudprovider=cloudstack
-    #    group: 'Nodepools'
+  - variable: nodepools.1.apiUrl
+    label: 'APIUrl'
+    default: 'https://compute.jp-east-2.idcfcloud.com/client/api'
+    type: string
+    description: 'API url for jp-east-2'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+#  - variable: nodepools.1.backups
+#    label: 'Backup'
+#    default: false
+#    type: boolean
+#    description: 'enable backups for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.ipv6
+#    label: 'IPv6'
+#    default: false
+#    type: boolean
+#    description: 'enable ipv6 for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.monitoring
+#    label: 'Monitoring'
+#    default: false
+#    type: boolean
+#    description: 'enable monitoring for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.usePrivateAddress
+#    label: 'Private Networking'
+#    default: true
+#    type: boolean
+#    description: 'use private IP to access the machine'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.expunge
+#    label: 'Expunge VM'
+#    default: true
+#    type: boolean
+#    description: 'do not Keep removed VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+  - variable: nodepools.1.zone
+    label: 'Zone'
+    default: weber
+    type: string
+    description: 'IDCF zone'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+  - variable: nodepools.1.serviceOffering
+    label: 'Size'
+    default: highcpu.L8
+    type: string
+    description: 'IDCF VM serviceOffering'
+    show_if: cloudprovider=cloudstack
+    group: 'Nodepools'
+#  - variable: nodepools.1.userdata
+#    label: 'Userdata'
+#    default:
+#    type: multiline
+#    description: 'File contents for userdata'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.sshPort
+#    label: 'SSH Port'
+#    default: 22
+#    type: string
+#    description: 'SSH port number'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.sshUser
+#    label: 'SSH User'
+#    default: root
+#    type: string
+#    description: 'SSH username'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
   
