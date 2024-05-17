@@ -656,27 +656,27 @@ questions:
     description: 'IDCF VM serviceOffering'
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
-  - variable: nodepools.0.userdata
-    label: 'Userdata'
-    default:
-    type: multiline
-    description: 'File contents for userdata'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.0.sshPort
-    label: 'SSH Port'
-    default: 22
-    type: string
-    description: 'SSH port number'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.0.sshUser
-    label: 'SSH User'
-    default: root
-    type: string
-    description: 'SSH username'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.0.userdata
+#    label: 'Userdata'
+#    default:
+#    type: multiline
+#    description: 'File contents for userdata'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.0.sshPort
+#    label: 'SSH Port'
+#    default: 22
+#    type: string
+#    description: 'SSH port number'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.0.sshUser
+#    label: 'SSH User'
+#    default: root
+#    type: string
+#    description: 'SSH username'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
 
   - variable: nodepools.1.name
     default:
@@ -776,25 +776,25 @@ questions:
     description: 'IDCF VM serviceOffering'
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
-  - variable: nodepools.1.userdata
-    label: 'Userdata'
-    default:
-    type: multiline
-    description: 'File contents for userdata'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.1.sshPort
-    label: 'SSH Port'
-    default: 22
-    type: string
-    description: 'SSH port number'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.1.sshUser
-    label: 'SSH User'
-    default: root
-    type: string
-    description: 'SSH username'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.1.userdata
+#    label: 'Userdata'
+#    default:
+#    type: multiline
+#    description: 'File contents for userdata'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.sshPort
+#    label: 'SSH Port'
+#    default: 22
+#    type: string
+#    description: 'SSH port number'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.sshUser
+#    label: 'SSH User'
+#    default: root
+#    type: string
+#    description: 'SSH username'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
 
