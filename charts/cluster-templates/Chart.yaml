@@ -1,9 +1,9 @@
 apiVersion: v2
 name: rancher-cluster-templates
-description: YAMATO Hardened Rancher Cluster Templates by Rancher Government Solutions
+description: Rancher Cluster Templates
 type: application
-version: 0.6.0
-appVersion: 0.6.0
+version: 0.6.1
+appVersion: 0.6.1
 annotations:
   catalog.cattle.io/type: cluster-template
   catalog.cattle.io/namespace: fleet-default

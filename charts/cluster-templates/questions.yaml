@@ -607,27 +607,27 @@ questions:
     description: 'API url for jp-east-2'
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
-  - variable: nodepools.0.backups
-    label: 'Backup'
-    default: false
-    type: boolean
-    description: 'enable backups for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.0.ipv6
-    label: 'IPv6'
-    default: false
-    type: boolean
-    description: 'enable ipv6 for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.0.monitoring
-    label: 'Monitoring'
-    default: false
-    type: boolean
-    description: 'enable monitoring for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.0.backups
+#    label: 'Backup'
+#    default: false
+#    type: boolean
+#    description: 'enable backups for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.0.ipv6
+#    label: 'IPv6'
+#    default: false
+#    type: boolean
+#    description: 'enable ipv6 for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.0.monitoring
+#    label: 'Monitoring'
+#    default: false
+#    type: boolean
+#    description: 'enable monitoring for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
   - variable: nodepools.0.usePrivateAddress
     label: 'Private Networking'
     default: true
@@ -727,27 +727,27 @@ questions:
     description: 'API url for jp-east-2'
     show_if: cloudprovider=cloudstack
     group: 'Nodepools'
-  - variable: nodepools.1.backups
-    label: 'Backup'
-    default: false
-    type: boolean
-    description: 'enable backups for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.1.ipv6
-    label: 'IPv6'
-    default: false
-    type: boolean
-    description: 'enable ipv6 for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
-  - variable: nodepools.1.monitoring
-    label: 'Monitoring'
-    default: false
-    type: boolean
-    description: 'enable monitoring for IDCF VM'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.1.backups
+#    label: 'Backup'
+#    default: false
+#    type: boolean
+#    description: 'enable backups for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.ipv6
+#    label: 'IPv6'
+#    default: false
+#    type: boolean
+#    description: 'enable ipv6 for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
+#  - variable: nodepools.1.monitoring
+#    label: 'Monitoring'
+#    default: false
+#    type: boolean
+#    description: 'enable monitoring for IDCF VM'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
   - variable: nodepools.1.usePrivateAddress
     label: 'Private Networking'
     default: true
