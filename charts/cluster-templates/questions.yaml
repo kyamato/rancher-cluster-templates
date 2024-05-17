@@ -679,6 +679,7 @@ questions:
 #    show_if: cloudprovider=cloudstack
 #    group: 'Nodepools'
 
+  - variable: nodepools.1.name
     default:
     description: 'Specify nodepool name'
     type: string
