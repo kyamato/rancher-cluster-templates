@@ -137,7 +137,7 @@ nodepools:
     ipv6: false
     monitoring: false
     # privateNetworking: true
-    usePrivateNetAddress: true
+    usePrivateAddress: true
     serviceOffering: # required (example: s-4vcpu-8gb)
     zone: # required (example: weber)
     # sshKeyContents: ''
@@ -182,7 +182,7 @@ nodepools:
     ipv6: false
     monitoring: false
     # privateNetworking: true
-    usePrivateNetAddress: true
+    usePrivateAddress: true
     zone: weber
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
