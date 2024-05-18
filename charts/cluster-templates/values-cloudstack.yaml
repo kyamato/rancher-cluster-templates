@@ -136,7 +136,8 @@ nodepools:
     template: "rocky92-g100-iscsi"
     ipv6: false
     monitoring: false
-    privateNetworking: true
+    # privateNetworking: true
+    usePrivateNetAddress: true
     serviceOffering: # required (example: s-4vcpu-8gb)
     zone: # required (example: weber)
     # sshKeyContents: ''
@@ -180,7 +181,8 @@ nodepools:
     backups: false
     ipv6: false
     monitoring: false
-    privateNetworking: true
+    # privateNetworking: true
+    usePrivateNetAddress: true
     zone: weber
     # sshKeyContents: ''
     # sshKeyFingerprint: ''
