@@ -22,7 +22,8 @@ template: {{ $nodepool.template }}
 {{- if $nodepool.monitoring }}
 monitoring: {{ $nodepool.monitoring }}
 {{- end }}
-usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+#usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+usePrivateAddress: true
 expunge: {{ $nodepool.expunge }}
 apiUrl: {{ $nodepool.apiUrl }}
 zone: {{ $nodepool.zone }}
@@ -65,7 +66,8 @@ template: {{ $nodepool.template }}
 {{- if $nodepool.monitoring }}
 monitoring: {{ $nodepool.monitoring }}
 {{- end }}
-usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+#usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+usePrivateAddress: true
 expunge: {{ $nodepool.expunge }}
 apiUrl: {{ $nodepool.apiUrl }}
 zone: {{ $nodepool.zone }}
