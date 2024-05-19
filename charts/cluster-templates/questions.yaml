@@ -629,13 +629,13 @@ questions:
 #    description: 'enable monitoring for IDCF VM'
 #    show_if: cloudprovider=cloudstack
 #    group: 'Nodepools'
-  - variable: nodepools.0.usePrivateAddress
-    label: 'Private Networking'
-    default: true
-    type: boolean
-    description: 'use private IP to access the machine'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.0.usePrivateAddress
+#    label: 'Private Networking'
+#    default: true
+#    type: boolean
+#    description: 'use private IP to access the machine'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
 #  - variable: nodepools.0.expunge
 #    label: 'Expunge VM'
 #    default: true
@@ -749,13 +749,13 @@ questions:
 #    description: 'enable monitoring for IDCF VM'
 #    show_if: cloudprovider=cloudstack
 #    group: 'Nodepools'
-  - variable: nodepools.1.usePrivateAddress
-    label: 'Private Networking'
-    default: true
-    type: boolean
-    description: 'use private IP to access the machine'
-    show_if: cloudprovider=cloudstack
-    group: 'Nodepools'
+#  - variable: nodepools.1.usePrivateAddress
+#    label: 'Private Networking'
+#    default: true
+#    type: boolean
+#    description: 'use private IP to access the machine'
+#    show_if: cloudprovider=cloudstack
+#    group: 'Nodepools'
 #  - variable: nodepools.1.expunge
 #    label: 'Expunge VM'
 #    default: true
@@ -798,4 +798,3 @@ questions:
 #    description: 'SSH username'
 #    show_if: cloudprovider=cloudstack
 #    group: 'Nodepools'
-  
