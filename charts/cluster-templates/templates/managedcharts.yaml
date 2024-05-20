@@ -4,7 +4,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: monitoring-crd-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "rancher-monitoring-crd"
   repoName: "rancher-charts"
@@ -22,7 +22,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: monitoring-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "rancher-monitoring"
   repoName: "rancher-charts"
@@ -62,7 +62,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: longhorn-crd-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "longhorn-crd"
   repoName: "rancher-charts"
@@ -103,7 +103,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: longhorn-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "longhorn"
   repoName: "rancher-charts"
@@ -125,7 +125,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: neuvector-crd-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "neuvector-crd"
   repoName: "rancher-charts"
@@ -143,7 +143,7 @@ apiVersion: management.cattle.io/v3
 kind: ManagedChart
 metadata:
   name: neuvector-{{ .Values.cluster.name }}
-  namespace: fleet-dep
+  namespace: fleet-default
 spec:
   chart: "neuvector"
   repoName: "rancher-charts"
