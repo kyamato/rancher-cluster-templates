@@ -4,7 +4,7 @@ apiVersion: rke-machine-config.cattle.io/v1
 kind: CloudstackConfig
 metadata:
   name: {{ $nodepool.name }}
-  namespace: fleet-default
+  namespace: fleet-dep
 #common:
 #{{- if $nodepool.labels }}
 #  labels:
@@ -47,7 +47,7 @@ apiVersion: rke-machine-config.cattle.io/v1
 kind: CloudstackConfig
 metadata:
   name: {{ $nodepool.name }}
-  namespace: fleet-default
+  namespace: fleet-dep
 common:
 {{- if $nodepool.labels }}
   labels:
